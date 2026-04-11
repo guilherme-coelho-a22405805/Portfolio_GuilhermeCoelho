@@ -5,7 +5,7 @@ from .models import (
     Formacao, Voluntariado, MakingOf
 )
 
-# Configuração especial para as relações "Muitos para Muitos"
+
 @admin.register(Projeto)
 class ProjetoAdmin(admin.ModelAdmin):
     filter_horizontal = ('tecnologias', 'competencias')
@@ -14,7 +14,6 @@ class ProjetoAdmin(admin.ModelAdmin):
 class TecnologiaAdmin(admin.ModelAdmin):
     filter_horizontal = ('competencias',)
 
-# Registo simples para todos os outros modelos
 admin.site.register(Competencia)
 admin.site.register(Licenciatura)
 admin.site.register(UnidadeCurricular)
