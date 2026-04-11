@@ -1,0 +1,7 @@
+Refactoring: Modelo Licenciatura
+    Decisão: Optei por remover os atributos propinas e cadeiras do modelo original.
+
+    Justificação: Considero que num portfólio profissional, detalhes financeiros não são relevantes para um recrutador. Em substituição, adicionei os campos instituicao, 
+    grau e periodo temporal (ano início/fim), que permitem contextualizar melhor o meu percurso académico e tornam a aplicação mais alinhada com um currículo real.
+
+
