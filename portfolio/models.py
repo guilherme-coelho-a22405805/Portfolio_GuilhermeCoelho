@@ -18,6 +18,7 @@ class Competencia(models.Model):
     TIPO_CHOICES = [
         ('soft_skill', 'Soft Skill'),
         ('tecnologia', 'Tecnologia'),
+        ('hard_skill', 'Hard Skill'),
     ]
     nome = models.CharField(max_length=100)
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
