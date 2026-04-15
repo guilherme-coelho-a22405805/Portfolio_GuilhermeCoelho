@@ -37,7 +37,7 @@ class Licenciatura(models.Model):
     diretor = models.CharField(max_length=100)
     objetivos = models.TextField()
     descricao = models.TextField()
-    logotipo = models.ImageField(upload_to='logos/', blank=True, null=True) # Logo da faculdade
+    logotipo = models.FileField(upload_to='logos_licenciatura/', blank=True, null=True) # Logo da faculdade
 
     def __str__(self):
         return f"{self.grau} em {self.nome}"
@@ -47,7 +47,7 @@ class UnidadeCurricular(models.Model):
     # Relação 1 <-> N com Licenciatura
     licenciatura = models.ForeignKey(Licenciatura, on_delete=models.CASCADE, related_name='unidades_curriculares')
     programa = models.TextField()
-    imagem = models.ImageField(upload_to='uc_images/', blank=True, null=True)
+    imagem = models.FileField(upload_to='uc_images/', blank=True, null=True)
     docentes = models.TextField(help_text="Link para a página pessoal da Lusófona")
     descricao = models.TextField()
 
@@ -64,7 +64,7 @@ class Projeto(models.Model):
     tecnologias = models.ManyToManyField(Tecnologia, related_name='projetos')
     competencias = models.ManyToManyField(Competencia, related_name='projetos')
     
-    imagem = models.ImageField(upload_to='projetos/', blank=True, null=True)
+    imagem = models.FileField(upload_to='projetos_img/', blank=True, null=True)
     descricao = models.TextField()
     link_github = models.URLField(blank=True)
 
