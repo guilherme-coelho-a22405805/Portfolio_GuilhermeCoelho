@@ -2,7 +2,7 @@ from django.db import models
 
 class Tecnologia(models.Model):
     nome = models.CharField(max_length=100)
-    logo = models.ImageField(upload_to='tecnologias/', blank=True, null=True)
+    logo = models.FileField(upload_to='tecnologias/', blank=True, null=True)
     link = models.URLField(blank=True)
     rating = models.IntegerField(default=0)
     descricao = models.TextField()
@@ -113,7 +113,7 @@ class Voluntariado(models.Model):
 
 
 class MakingOf(models.Model):
-    imagem = models.ImageField(upload_to='making_of/')
+    imagem = models.FileField(upload_to='making_of/')
     decisoes = models.TextField()
     erros_correcoes = models.TextField()
     descricao = models.TextField()
