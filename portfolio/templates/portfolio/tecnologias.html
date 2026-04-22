@@ -4,15 +4,16 @@
     <h2>Tecnologias</h2>
     <section>
     {% for tecnologia in tecnologias %}
-    <article>
+    <article class="articleTecnologias">
         <header>
             <h3>{{ tecnologia.nome }}</h3>
+            
             <!--To-do: Adicionar Image-->
         </header>
 
-        <section>
+        <section class="sections">
             <ul>
-                <li>Link: <a href="tecnologia.link">{{tecnologia.link}}</a></li>
+                <li>Link: <a href="{{tecnologia.link}}" target="_blank">{{tecnologia.link}}</a></li>
                 <li>Rating:{{tecnologia.rating}}</li>
                 <li>Descricao:{{tecnologia.descricao}}</li>
                 <li>Aspetos Relevantes: {{tecnologia.aspetos_relevantes}}</li>

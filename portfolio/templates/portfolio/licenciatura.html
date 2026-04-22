@@ -2,4 +2,21 @@
 
 {% block content %}
     <h2>Licenciatura</h2>
+    <section>
+    {% for licenciatura in licenciaturas %}
+    <article>
+        <header>
+            <h3>{{ licenciatura.nome }}</h3>
+            <!--To-do: Adicionar Image-->
+        </header>
+
+        <section class="sections">
+            <ul>
+                <li>Instituição : {{licenciatura.instituição}}</li>
+                
+            </ul>
+        </section>
+    </article>
+    {% endfor %}
+    </section>
 {% endblock %}

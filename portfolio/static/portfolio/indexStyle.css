@@ -1,7 +1,13 @@
 *{
     background-color: lightblue;
+    
 }
 
-.header{
-    display: flex;
+.articleTecnologias{
+    background-color: white;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 8px; 
+    border: 1px solid #ccc;
+    x: 1000;
 }
