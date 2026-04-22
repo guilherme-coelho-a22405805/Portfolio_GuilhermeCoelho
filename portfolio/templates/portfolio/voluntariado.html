@@ -2,4 +2,20 @@
 
 {% block content %}
     <h2>Voluntariado</h2>
+    <section>
+    {% for voluntariado in voluntariados %}
+    <article>
+        <header>
+            <h3>{{ voluntariado.nome }}</h3>
+        </header>
+
+        <section>
+            <ul>
+                <li>{{voluntariado.data}}</li>
+                <li>{{voluntariado.descricao}}</li>
+            </ul>
+        </section>
+    </article>
+    {% endfor %}
+    </section>
 {% endblock %}
