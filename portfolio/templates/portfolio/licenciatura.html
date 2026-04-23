@@ -7,12 +7,21 @@
     <article>
         <header>
             <h3>{{ licenciatura.nome }}</h3>
-            <!--To-do: Adicionar Image-->
+            {% if licenciatura.logotipo %}
+                <img src="{{ licenciatura.logotipo.url }}" alt="Logo {{ tecnologia.nome }}" style="width: 400px; height: 180px">
+            {% endif %}
         </header>
 
         <section class="sections">
             <ul>
-                <li>Instituição : {{licenciatura.instituição}}</li>
+                <li>Instituição : {{ licenciatura.instituicao}}</li>
+                <li>Grau : {{ licenciatura.grau }}</li>
+                <li>Ano Início : {{licenciatura.ano_inicio}}</li>
+                <li>Ano Fim : {{licenciatura.ano_fim}}</li>
+                <li>Diretor : {{licenciatura.diretor}}</li>
+                <li>Objetivos : {{licenciatura.objetivos}}</li>
+                <li>Descricao : {{licenciatura.descricao}}</li>
+
                 
             </ul>
         </section>

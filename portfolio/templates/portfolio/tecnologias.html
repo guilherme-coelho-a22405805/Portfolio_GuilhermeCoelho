@@ -4,11 +4,12 @@
     <h2>Tecnologias</h2>
     <section>
     {% for tecnologia in tecnologias %}
-    <article class="articleTecnologias">
+    <article>
         <header>
             <h3>{{ tecnologia.nome }}</h3>
-            
-            <!--To-do: Adicionar Image-->
+            {% if tecnologia.logo %}
+                <img src="{{ tecnologia.logo.url }}" alt="Logo {{ tecnologia.nome }}" style="width: 50px; height: 50px">
+            {% endif %}
         </header>
 
         <section class="sections">

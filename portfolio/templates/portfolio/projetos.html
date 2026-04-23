@@ -1,5 +1,48 @@
 {% extends "portfolio/index.html" %}
-
 {% block content %}
     <h2>Projetos</h2>
+    <section>
+    {% for projeto in projetos %}
+    <article>
+        <header>
+            <h3>{{ projeto.nome }}</h3>
+            {% if projeto.imagem %}
+                <img src="{{ projeto.imagem.url }}" alt="Imagem {{ projeto.nome }}" style="width: 480px; height: 300px">
+            {% endif %}
+        </header>
+        <section class="sections">
+            <ul>
+                <li>Descrição: {{ projeto.descricao }}</li>
+                <li>Unidade Curricular: {{ projeto.unidade_curricular.nome }}</li>
+                {% if projeto.link_github %}
+                    <li><a href="{{ projeto.link_github }}" target="_blank">Ver no GitHub</a></li>
+                {% endif %}
+                {% if projeto.tecnologias.all %}
+                    <li>Tecnologias:
+                        <ul>
+                        {% for tecnologia in projeto.tecnologias.all %}
+                            <li>
+                                {% if tecnologia.logo %}
+                                    <img src="{{ tecnologia.logo.url }}" alt="{{ tecnologia.nome }}" style="width: 20px; height: 20px">
+                                {% endif %}
+                                {{ tecnologia.nome }}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </li>
+                {% endif %}
+                {% if projeto.competencias.all %}
+                    <li>Competências:
+                        <ul>
+                        {% for competencia in projeto.competencias.all %}
+                            <li>{{ competencia.nome }} — {{ competencia.tipo }}</li>
+                        {% endfor %}
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </section>
+    </article>
+    {% endfor %}
+    </section>
 {% endblock %}

@@ -1,5 +1,25 @@
 {% extends "portfolio/index.html" %}
-
 {% block content %}
     <h2>Formações</h2>
+    <section>
+    {% for formacao in formacoes %}
+    <article>
+        <header>
+            <h3>{{ formacao.nome }}</h3>
+        </header>
+        <section class="sections">
+            <ul>
+                <li>Início: {{ formacao.data_inicio }}</li>
+                <li>Conclusão: {{ formacao.data_conclusao }}</li>
+                <li>Descrição: {{ formacao.descricao }}</li>
+                {% if formacao.link_certificado %}
+                    <li>
+                        <a href="{{ formacao.link_certificado }}" target="_blank">Ver Certificado</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </section>
+    </article>
+    {% endfor %}
+    </section>
 {% endblock %}

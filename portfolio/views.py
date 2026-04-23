@@ -19,13 +19,13 @@ def formacoes_view(request):
     return render(request,'portfolio/formacoes.html',{'formacoes':formacoes} )
 
 def licenciatura_view(request):
-    licenciatura = Licenciatura.objects.all()
-    return render(request,'portfolio/licenciatura.html',{'licenciatura':licenciatura} )
+    licenciaturas = Licenciatura.objects.all()
+    return render(request,'portfolio/licenciatura.html',{'licenciaturas':licenciaturas} )
 
 def projetos_view(request):
     projetos = Projeto.objects.all()
     return render(request,'portfolio/projetos.html',{'projetos':projetos} )
 
 def voluntariado_view(request):
-    voluntariado = Voluntariado.objects.all()
-    return render(request,'portfolio/voluntariado.html',{'voluntariado':voluntariado} )
+    voluntariados = Voluntariado.objects.all()
+    return render(request,'portfolio/voluntariado.html',{'voluntariados':voluntariados} )
