@@ -2,6 +2,9 @@
 
 {% block content %}
     <h2>Competências</h2>
+
+    <a href="{% url 'competencia_nova' %}" class="btn-add">+ Adicionar nova competência</a>
+
     <div>
         <section>
         {% for competencia in competencias %}
@@ -9,11 +12,10 @@
             <header>
                 <h3>{{ competencia.nome }}</h3>
             </header>
-
             <section>
                 <ul>
-                    <li>{{competencia.tipo}}</li>
-                    <li>{{competencia.descricao}}</li>
+                    <li>{{ competencia.tipo }}</li>
+                    <li>{{ competencia.descricao }}</li>
                 </ul>
             </section>
         </article>

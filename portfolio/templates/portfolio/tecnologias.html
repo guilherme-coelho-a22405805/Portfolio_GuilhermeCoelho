@@ -2,6 +2,9 @@
 
 {% block content %}
     <h2>Tecnologias</h2>
+
+    <a href="{% url 'tecnologia_nova' %}" class="btn-add">+ Adicionar nova tecnologia</a>
+
     <section>
     {% for tecnologia in tecnologias %}
     <article>

@@ -1,0 +1,14 @@
+{% extends "portfolio/index.html" %}
+
+{% block content %}
+    <h2>Nova Tecnologia</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions">
+            <button type="submit">Guardar</button>
+            <a href="{% url 'tecnologias' %}" class="btn-cancel">Cancelar</a>
+        </div>
+    </form>
+{% endblock %}
