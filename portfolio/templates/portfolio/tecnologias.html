@@ -7,23 +7,31 @@
 
     <section>
     {% for tecnologia in tecnologias %}
-    <article>
-        <header>
-            <h3>{{ tecnologia.nome }}</h3>
-            {% if tecnologia.logo %}
-                <img src="{{ tecnologia.logo.url }}" alt="Logo {{ tecnologia.nome }}" style="width: 50px; height: 50px">
-            {% endif %}
-        </header>
+        <div class="item-card">
+            <div class="item-card-header">
+                {% if tecnologia.logo %}
+                    <img src="{{ tecnologia.logo.url }}" alt="Logo {{ tecnologia.nome }}" class="item-card-logo">
+                {% endif %}
+                <h3>{{ tecnologia.nome }}</h3>
+            </div>
 
-        <section class="sections">
-            <ul>
-                <li>Link: <a href="{{tecnologia.link}}" target="_blank">{{tecnologia.link}}</a></li>
-                <li>Rating:{{tecnologia.rating}}</li>
-                <li>Descricao:{{tecnologia.descricao}}</li>
-                <li>Aspetos Relevantes: {{tecnologia.aspetos_relevantes}}</li>
-            </ul>
-        </section>
-    </article>
+            <div class="item-card-body">
+                <ul>
+                    <li><strong>Link:</strong> <a href="{{ tecnologia.link }}" target="_blank">{{ tecnologia.link }}</a></li>
+                    <li><strong>Rating:</strong> {{ tecnologia.rating }}/5</li>
+                    <li><strong>Descrição:</strong> {{ tecnologia.descricao }}</li>
+                    <li><strong>Aspetos Relevantes:</strong> {{ tecnologia.aspetos_relevantes }}</li>
+                </ul>
+            </div>
+
+            <div class="item-card-footer">
+                 <a href="{% url 'tecnologia_editar' tecnologia.id %}" class="btn-edit">Editar</a>
+                <form method="post" action="{% url 'tecnologia_eliminar' tecnologia.id %}" class="delete-form" onsubmit="return confirm('Tens a certeza que queres eliminar {{ tecnologia.nome }}?');">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-delete">Eliminar</button>
+                </form>
+            </div>
+        </div>
     {% endfor %}
     </section>
 {% endblock %}

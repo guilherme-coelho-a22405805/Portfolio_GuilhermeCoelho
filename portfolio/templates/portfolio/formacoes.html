@@ -1,26 +1,37 @@
 {% extends "portfolio/index.html" %}
+
 {% block content %}
     <h2>Formações</h2>
+
     <a href="{% url 'formacoes_nova' %}" class="btn-add">+ Adicionar nova formação</a>
+
     <section>
     {% for formacao in formacoes %}
-    <article>
-        <header>
-            <h3>{{ formacao.nome }}</h3>
-        </header>
-        <section class="sections">
-            <ul>
-                <li>Início: {{ formacao.data_inicio }}</li>
-                <li>Conclusão: {{ formacao.data_conclusao }}</li>
-                <li>Descrição: {{ formacao.descricao }}</li>
-                {% if formacao.link_certificado %}
-                    <li>
-                        <a href="{{ formacao.link_certificado }}" target="_blank">Ver Certificado</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </section>
-    </article>
+        <div class="item-card">
+            <div class="item-card-header">
+                <h3>{{ formacao.nome }}</h3>
+            </div>
+
+            <div class="item-card-body">
+                <ul>
+                    <li><strong>Início:</strong> {{ formacao.data_inicio }}</li>
+                    <li><strong>Conclusão:</strong> {{ formacao.data_conclusao }}</li>
+                    <li><strong>Descrição:</strong> {{ formacao.descricao }}</li>
+                    {% if formacao.link_certificado %}
+                        <li>
+                            <a href="{{ formacao.link_certificado }}" target="_blank">Ver Certificado</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="item-card-footer">
+                <a href="{% url 'formacao_editar' formacao.id %}" class="btn-edit">Editar</a>
+                <form method="post" action="{% url 'formacao_eliminar' formacao.id %}" class="delete-form" onsubmit="return confirm('Tens a certeza que queres eliminar {{ formacao.nome }}?');">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-delete">Eliminar</button>
+                </form>
+            </div>
+        </div>
     {% endfor %}
     </section>
 {% endblock %}

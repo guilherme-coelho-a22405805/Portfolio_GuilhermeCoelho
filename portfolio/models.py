@@ -136,7 +136,7 @@ class Voluntariado(models.Model):
 
 class MakingOf(models.Model):
     nome = models.CharField(max_length=200, blank=True, default="")
-    imagem = models.FileField(upload_to='making_of/')
+    imagem = models.FileField(upload_to='making_of/',blank=True, null=True)
     decisoes = models.TextField()
     erros_correcoes = models.TextField()
     descricao = models.TextField()

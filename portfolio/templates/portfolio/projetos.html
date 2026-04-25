@@ -1,49 +1,61 @@
 {% extends "portfolio/index.html" %}
+
 {% block content %}
     <h2>Projetos</h2>
+
     <a href="{% url 'projetos_nova' %}" class="btn-add">+ Adicionar novo Projeto</a>
+
     <section>
     {% for projeto in projetos %}
-    <article>
-        <header>
-            <h3>{{ projeto.nome }}</h3>
+        <div class="item-card">
+            <div class="item-card-header">
+                <h3>{{ projeto.nome }}</h3>
+            </div>
+
             {% if projeto.imagem %}
-                <img src="{{ projeto.imagem.url }}" alt="Imagem {{ projeto.nome }}" style="width: 480px; height: 300px">
+                <img src="{{ projeto.imagem.url }}" alt="Imagem {{ projeto.nome }}" class="item-card-image-large">
             {% endif %}
-        </header>
-        <section class="sections">
-            <ul>
-                <li>Descrição: {{ projeto.descricao }}</li>
-                <li>Unidade Curricular: {{ projeto.unidade_curricular.nome }}</li>
-                {% if projeto.link_github %}
-                    <li><a href="{{ projeto.link_github }}" target="_blank">Ver no GitHub</a></li>
-                {% endif %}
-                {% if projeto.tecnologias.all %}
-                    <li>Tecnologias:
-                        <ul>
-                        {% for tecnologia in projeto.tecnologias.all %}
-                            <li>
-                                {% if tecnologia.logo %}
-                                    <img src="{{ tecnologia.logo.url }}" alt="{{ tecnologia.nome }}" style="width: 20px; height: 20px">
-                                {% endif %}
-                                {{ tecnologia.nome }}
-                            </li>
-                        {% endfor %}
-                        </ul>
-                    </li>
-                {% endif %}
-                {% if projeto.competencias.all %}
-                    <li>Competências:
-                        <ul>
-                        {% for competencia in projeto.competencias.all %}
-                            <li>{{ competencia.nome }} — {{ competencia.tipo }}</li>
-                        {% endfor %}
-                        </ul>
-                    </li>
-                {% endif %}
-            </ul>
-        </section>
-    </article>
+
+            <div class="item-card-body">
+                <ul>
+                    <li><strong>Descrição:</strong> {{ projeto.descricao }}</li>
+                    <li><strong>Unidade Curricular:</strong> {{ projeto.unidade_curricular.nome }}</li>
+                    {% if projeto.link_github %}
+                        <li><a href="{{ projeto.link_github }}" target="_blank">Ver no GitHub</a></li>
+                    {% endif %}
+                    {% if projeto.tecnologias.all %}
+                        <li><strong>Tecnologias:</strong>
+                            <ul class="sub-list">
+                            {% for tecnologia in projeto.tecnologias.all %}
+                                <li>
+                                    {% if tecnologia.logo %}
+                                        <img src="{{ tecnologia.logo.url }}" alt="{{ tecnologia.nome }}" class="inline-icon">
+                                    {% endif %}
+                                    {{ tecnologia.nome }}
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                    {% if projeto.competencias.all %}
+                        <li><strong>Competências:</strong>
+                            <ul class="sub-list">
+                            {% for competencia in projeto.competencias.all %}
+                                <li>{{ competencia.nome }} — {{ competencia.get_tipo_display }}</li>
+                            {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="item-card-footer">
+                <a href="{% url 'projeto_editar' projeto.id %}" class="btn-edit">Editar</a>
+                <form method="post" action="{% url 'projeto_eliminar' projeto.id %}" class="delete-form" onsubmit="return confirm('Tens a certeza que queres eliminar {{ projeto.nome }}?');">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-delete">Eliminar</button>
+                </form>
+            </div>
+        </div>
     {% endfor %}
     </section>
 {% endblock %}

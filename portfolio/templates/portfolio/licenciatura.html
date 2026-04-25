@@ -2,30 +2,35 @@
 
 {% block content %}
     <h2>Licenciatura</h2>
+
     <section>
     {% for licenciatura in licenciaturas %}
-    <article>
-        <header>
-            <h3>{{ licenciatura.nome }}</h3>
-            {% if licenciatura.logotipo %}
-                <img src="{{ licenciatura.logotipo.url }}" alt="Logo {{ tecnologia.nome }}" style="width: 400px; height: 180px">
-            {% endif %}
-        </header>
+        <div class="item-card">
+            <div class="item-card-header">
+                {% if licenciatura.logotipo %}
+                    <img src="{{ licenciatura.logotipo.url }}" alt="Logo {{ licenciatura.nome }}" class="item-card-image-large">
+                {% endif %}
+                <h3>{{ licenciatura.nome }}</h3>
+            </div>
 
-        <section class="sections">
-            <ul>
-                <li>Instituição : {{ licenciatura.instituicao}}</li>
-                <li>Grau : {{ licenciatura.grau }}</li>
-                <li>Ano Início : {{licenciatura.ano_inicio}}</li>
-                <li>Ano Fim : {{licenciatura.ano_fim}}</li>
-                <li>Diretor : {{licenciatura.diretor}}</li>
-                <li>Objetivos : {{licenciatura.objetivos}}</li>
-                <li>Descricao : {{licenciatura.descricao}}</li>
-
-                
-            </ul>
-        </section>
-    </article>
+            <div class="item-card-body">
+                <ul>
+                    <li><strong>Instituição:</strong> {{ licenciatura.instituicao }}</li>
+                    <li><strong>Grau:</strong> {{ licenciatura.grau }}</li>
+                    <li><strong>Ano Início:</strong> {{ licenciatura.ano_inicio }}</li>
+                    <li><strong>Ano Fim:</strong> {{ licenciatura.ano_fim|default:"Em curso" }}</li>
+                    <li><strong>Diretor:</strong> {{ licenciatura.diretor }}</li>
+                    <li><strong>Objetivos:</strong> {{ licenciatura.objetivos }}</li>
+                    <li><strong>Descrição:</strong> {{ licenciatura.descricao }}</li>
+                </ul>
+            </div>
+            <div class="item-card-footer">
+                <form method="post" action="{% url 'licenciatura_eliminar' licenciatura.id %}" class="delete-form" onsubmit="return confirm('Tens a certeza que queres eliminar {{ licenciatura.nome }}?');">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-delete">Eliminar</button>
+                </form>
+            </div>
+        </div>
     {% endfor %}
     </section>
 {% endblock %}

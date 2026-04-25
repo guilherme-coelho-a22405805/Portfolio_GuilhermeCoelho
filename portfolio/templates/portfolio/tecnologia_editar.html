@@ -1,0 +1,14 @@
+{% extends "portfolio/index.html" %}
+
+{% block content %}
+    <h2>Editar Tecnologia: {{ tecnologia.nome }}</h2>
+
+    <div class="form-container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-add">Guardar Alterações</button>
+            <a href="{% url 'tecnologias' %}" class="btn-cancel">Cancelar</a>
+        </form>
+    </div>
+{% endblock %}
