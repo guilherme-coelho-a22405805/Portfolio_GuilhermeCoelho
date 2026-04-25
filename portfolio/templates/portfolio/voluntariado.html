@@ -2,6 +2,7 @@
 
 {% block content %}
     <h2>Voluntariado</h2>
+    <a href="{% url 'voluntariado_nova' %}" class="btn-add">+ Adicionar novo Voluntariado</a>
     <section>
     {% for voluntariado in voluntariados %}
     <article>
@@ -11,7 +12,8 @@
 
         <section>
             <ul>
-                <li>{{voluntariado.data}}</li>
+                <li>{{voluntariado.data_inicio}}</li>
+                <li>{{voluntariado.data_conclusao}}</li>
                 <li>{{voluntariado.descricao}}</li>
             </ul>
         </section>

@@ -1,6 +1,7 @@
 {% extends "portfolio/index.html" %}
 {% block content %}
     <h2>Formações</h2>
+    <a href="{% url 'formacoes_nova' %}" class="btn-add">+ Adicionar nova formação</a>
     <section>
     {% for formacao in formacoes %}
     <article>

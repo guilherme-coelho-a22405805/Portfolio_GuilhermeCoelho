@@ -1,6 +1,7 @@
 {% extends "portfolio/index.html" %}
 {% block content %}
     <h2>Projetos</h2>
+    <a href="{% url 'projetos_nova' %}" class="btn-add">+ Adicionar novo Projeto</a>
     <section>
     {% for projeto in projetos %}
     <article>
