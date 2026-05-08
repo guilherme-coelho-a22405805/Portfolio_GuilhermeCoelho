@@ -1,1 +1,5 @@
 venv/
+.env
+dados.json
+project/settings.py
+
