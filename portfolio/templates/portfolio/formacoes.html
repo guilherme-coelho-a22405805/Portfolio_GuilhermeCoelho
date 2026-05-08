@@ -2,9 +2,9 @@
 
 {% block content %}
     <h2>Formações</h2>
-
-    <a href="{% url 'formacoes_nova' %}" class="btn-add">+ Adicionar nova formação</a>
-
+    {% if gestor %}
+        <a href="{% url 'formacoes_nova' %}" class="btn-add">+ Adicionar nova formação</a>
+    {% endif %}
     <section>
     {% for formacao in formacoes %}
         <div class="item-card">
@@ -25,11 +25,13 @@
                 </ul>
             </div>
             <div class="item-card-footer">
+                {% if gestor %}
                 <a href="{% url 'formacao_editar' formacao.id %}" class="btn-edit">Editar</a>
                 <form method="post" action="{% url 'formacao_eliminar' formacao.id %}" class="delete-form" onsubmit="return confirm('Tens a certeza que queres eliminar {{ formacao.nome }}?');">
                     {% csrf_token %}
                     <button type="submit" class="btn-delete">Eliminar</button>
                 </form>
+                {% endif %}
             </div>
         </div>
     {% endfor %}

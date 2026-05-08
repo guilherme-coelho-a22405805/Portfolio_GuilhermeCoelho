@@ -3,8 +3,10 @@
 {% block content %}
     <h2>Projetos</h2>
 
-    <a href="{% url 'projetos_nova' %}" class="btn-add">+ Adicionar novo Projeto</a>
-
+    {% if gestor %}
+        <a href="{% url 'projetos_nova' %}" class="btn-add">+ Adicionar novo Projeto</a>
+    {% endif %}
+    
     <section>
     {% for projeto in projetos %}
         <div class="item-card">
@@ -49,11 +51,13 @@
                 </ul>
             </div>
             <div class="item-card-footer">
+                {% if gestor %}
                 <a href="{% url 'projeto_editar' projeto.id %}" class="btn-edit">Editar</a>
                 <form method="post" action="{% url 'projeto_eliminar' projeto.id %}" class="delete-form" onsubmit="return confirm('Tens a certeza que queres eliminar {{ projeto.nome }}?');">
                     {% csrf_token %}
                     <button type="submit" class="btn-delete">Eliminar</button>
                 </form>
+                {% endif %}
             </div>
         </div>
     {% endfor %}

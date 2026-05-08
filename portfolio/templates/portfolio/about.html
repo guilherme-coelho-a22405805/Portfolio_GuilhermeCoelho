@@ -1,0 +1,19 @@
+{% extends "portfolio/index.html" %}
+{% block content %}
+
+    <section class="about-me">
+        <div class="about-me-photo">
+            
+            <img src="{% static 'portfolio/img/profile.jpg' %}" alt="Foto de perfil" onerror="this.style.display='none'">
+        </div>
+        <div class="about-me-text">
+            <h2>About Me</h2>
+            <p>
+               
+                Olá, sou o Guilherme Coelho. Estudante de Engenharia Informática
+                na Universidade Lusófona. Aqui podes ver as minhas tecnologias,
+                projetos e percurso académico.
+            </p>
+        </div>
+    </section>
+{% endblock %}

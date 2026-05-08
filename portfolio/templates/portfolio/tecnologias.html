@@ -3,8 +3,9 @@
 {% block content %}
     <h2>Tecnologias</h2>
 
-    <a href="{% url 'tecnologia_nova' %}" class="btn-add">+ Adicionar nova tecnologia</a>
-
+    {% if gestor %}
+        <a href="{% url 'tecnologia_nova' %}" class="btn-add">+ Adicionar nova tecnologia</a>
+    {% endif %}
     <section>
     {% for tecnologia in tecnologias %}
         <div class="item-card">
@@ -25,11 +26,13 @@
             </div>
 
             <div class="item-card-footer">
+                {% if gestor %}
                  <a href="{% url 'tecnologia_editar' tecnologia.id %}" class="btn-edit">Editar</a>
                 <form method="post" action="{% url 'tecnologia_eliminar' tecnologia.id %}" class="delete-form" onsubmit="return confirm('Tens a certeza que queres eliminar {{ tecnologia.nome }}?');">
                     {% csrf_token %}
                     <button type="submit" class="btn-delete">Eliminar</button>
                 </form>
+                {% endif %}
             </div>
         </div>
     {% endfor %}

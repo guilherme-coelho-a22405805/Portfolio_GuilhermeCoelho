@@ -2,9 +2,9 @@
 
 {% block content %}
     <h2>Voluntariado</h2>
-
-    <a href="{% url 'voluntariado_nova' %}" class="btn-add">+ Adicionar novo Voluntariado</a>
-
+    {% if gestor %}
+        <a href="{% url 'voluntariado_nova' %}" class="btn-add">+ Adicionar novo Voluntariado</a>
+    {% endif %}
     <section>
     {% for voluntariado in voluntariados %}
         <div class="item-card">
@@ -20,11 +20,13 @@
                 </ul>
             </div>
             <div class="item-card-footer">
+                {% if gestor %}
                 <a href="{% url 'voluntariado_editar' voluntariado.id %}" class="btn-edit">Editar</a>
                 <form method="post" action="{% url 'voluntariado_eliminar' voluntariado.id %}" class="delete-form" onsubmit="return confirm('Tens a certeza que queres eliminar {{ voluntariado.nome }}?');">
                     {% csrf_token %}
                     <button type="submit" class="btn-delete">Eliminar</button>
                 </form>
+                {% endif %}
             </div>
         </div>
     {% endfor %}

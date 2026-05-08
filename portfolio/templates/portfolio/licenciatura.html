@@ -25,10 +25,12 @@
                 </ul>
             </div>
             <div class="item-card-footer">
+                {% if gestor %}
                 <form method="post" action="{% url 'licenciatura_eliminar' licenciatura.id %}" class="delete-form" onsubmit="return confirm('Tens a certeza que queres eliminar {{ licenciatura.nome }}?');">
                     {% csrf_token %}
                     <button type="submit" class="btn-delete">Eliminar</button>
                 </form>
+                {% endif %}
             </div>
         </div>
     {% endfor %}

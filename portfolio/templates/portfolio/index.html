@@ -12,6 +12,15 @@
     <header>
         <h1 class="h1IndexTittle">My Portfolio</h1>
         <nav>
+            {% if request.user.is_authenticated %}
+                <p>Olá, {{ request.user.username }}! <a href="{% url 'logout' %}">Logout</a></p>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+
+                <a href="{% url 'registo' %}">Registo</a>
+                <a href="{% url 'logout' %}">Logout</a>
+
             <a href="{% url 'landingPage' %}" class="nav-btn">Home</a>
             <a href="{% url 'tecnologias' %}" class="nav-btn">Tecnologias</a>
             <a href="{% url 'competencias' %}" class="nav-btn">Competências</a>
@@ -22,22 +31,6 @@
         </nav>
     </header>
 
-    <!-- Bloco About Me - aparece em todas as páginas que estendam este template -->
-    <section class="about-me">
-        <div class="about-me-photo">
-            <!-- Substituir pela foto real depois -->
-            <img src="{% static 'portfolio/img/profile.jpg' %}" alt="Foto de perfil" onerror="this.style.display='none'">
-        </div>
-        <div class="about-me-text">
-            <h2>About Me</h2>
-            <p>
-                <!-- Texto curto sobre ti - substituir depois -->
-                Olá, sou o Guilherme Coelho. Estudante de Engenharia Informática
-                na Universidade Lusófona. Aqui podes ver as minhas tecnologias,
-                projetos e percurso académico.
-            </p>
-        </div>
-    </section>
 
     <main>
         {% block content %}

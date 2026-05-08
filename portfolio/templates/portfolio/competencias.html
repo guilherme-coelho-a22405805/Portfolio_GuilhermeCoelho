@@ -2,9 +2,9 @@
 
 {% block content %}
     <h2>Competências</h2>
-
-    <a href="{% url 'competencia_nova' %}" class="btn-add">+ Adicionar nova competência</a>
-
+    {% if gestor %}
+        <a href="{% url 'competencia_nova' %}" class="btn-add">+ Adicionar nova competência</a>
+    {% endif %}
     <section>
     {% for competencia in competencias %}
         <div class="item-card">
@@ -20,11 +20,15 @@
             </div>
 
             <div class="item-card-footer">
+                {% if gestor %}
                 <a href="{% url 'competencia_editar' competencia.id %}" class="btn-edit">Editar</a>
+                
                 <form method="post" action="{% url 'competencia_eliminar' competencia.id %}" class="delete-form" onsubmit="return confirm('Tens a certeza que queres eliminar {{ competencia.nome }}?');">
                     {% csrf_token %}
                     <button type="submit" class="btn-delete">Eliminar</button>
                 </form>
+
+                {% endif %}
             </div>
         </div>
     {% endfor %}
