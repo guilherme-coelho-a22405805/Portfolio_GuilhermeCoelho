@@ -2,4 +2,5 @@ venv/
 .env
 dados.json
 project/settings.py
-
+media_backup.zip
+staticfiles/
